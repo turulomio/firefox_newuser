@@ -9,13 +9,15 @@ if [ "$USER" == "root" ]; then
   su - firefox_newuser -c 'mkdir -p /home/firefox_newuser/.pulse/'
   su - firefox_newuser -c 'echo "default-server = unix:/tmp/my-pulse-socket-name" > /home/firefox_newuser/.pulse/client.conf'
   su - firefox_newuser -c 'firefox --private-window www.google.com'
+  echo "Process of firefox_newuser before killing"
+  ps -U firefox_newuser -u firefox_newuser u
   pkill -9 -U firefox_newuser
-  userdel firefox_newuser
   rm -Rf /home/firefox_newuser
   echo "Directory /home"
   ls -la /home
-  echo "Process of firefox_newuser"
-  ps aux | grep firefox_newuser
+  echo "Process of firefox_newuser after killing"
+  ps -U firefox_newuser -u firefox_newuser u
+  userdel firefox_newuser
 else
   xhost +
   echo "Introduce la contraseña de root"
