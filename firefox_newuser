@@ -8,7 +8,7 @@ if [ "$USER" == "root" ]; then
   chown firefox_newuser:users /home/firefox_newuser
   su - firefox_newuser -c 'mkdir -p /home/firefox_newuser/.pulse/'
   su - firefox_newuser -c 'echo "default-server = unix:/tmp/my-pulse-socket-name" > /home/firefox_newuser/.pulse/client.conf'
-  su - firefox_newuser -c 'firefox --private-window www.google.com'
+  su - firefox_newuser -c 'DISPLAY=:0 firefox --private-window www.google.com'
   echo "Process of firefox_newuser before killing"
   ps -U firefox_newuser -u firefox_newuser u
   pkill -9 -U firefox_newuser
