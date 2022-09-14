@@ -1,23 +1,39 @@
 #!/bin/bash
+SYNCPATH=${1:-/root}
+
+echo $SYNCPATH
 if [ "$USER" == "root" ]; then
   echo "In order to use sound in the you need have the following line in /etc/pulse/default.pa"
   echo "load-module module-native-protocol-unix auth-anonymous=1 socket=/tmp/my-pulse-socket-name"
 
   useradd firefox_newuser -g users -G audio,video
-  mkdir -p  /home/firefox_newuser
+  mkdir -p  /home/firefox_newuser/sync
   chown firefox_newuser:users /home/firefox_newuser
   su - firefox_newuser -c 'mkdir -p /home/firefox_newuser/.pulse/'
   su - firefox_newuser -c 'echo "default-server = unix:/tmp/my-pulse-socket-name" > /home/firefox_newuser/.pulse/client.conf'
   su - firefox_newuser -c 'DISPLAY=:0 firefox --private-window www.google.com'
+  sleep 2
+
+  echo "Unmounting cache"
+  su - firefox_newuser -c 'fusermount -u /home/firefox_newuser/.cache/doc'
+
+
   echo "Process of firefox_newuser before killing"
   ps -U firefox_newuser -u firefox_newuser u
   pkill -9 -U firefox_newuser
-  rm -Rf /home/firefox_newuser
-  echo "Directory /home"
-  ls -la /home
+  sleep 2
+
   echo "Process of firefox_newuser after killing"
   ps -U firefox_newuser -u firefox_newuser u
   userdel firefox_newuser
+  sleep 2
+  
+  echo "Moving sync files to $SYNCPATH"
+  mv /home/firefox_newuser/sync $SYNCPATH
+
+  rm -Rf /home/firefox_newuser
+  echo "Directory /home"
+  ls -la /home  
 else
   xhost +
   echo "Introduce la contraseña de root"
