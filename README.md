@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.0
+- Added sync directory.
+- .cache/doc is unmounted now cache/doc
+
 ## 0.3.0
 - Added DISPLAY environment variable
 
