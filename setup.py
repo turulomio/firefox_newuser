@@ -75,7 +75,6 @@ class Procedure(Command):
   * linguist
   * python setup.py translate
   * python setup.py uninstall; python setup.py install
-  * python setup.py doxygen
   * git commit -a -m 'firefox_newuser-{0}'
   * git push
   * Hacer un nuevo tag en GitHub
