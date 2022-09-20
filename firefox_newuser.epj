@@ -2,7 +2,7 @@
   "header": {
     "comment": "eric project file for project firefox_newuser",
     "copyright": "Copyright (C) 2022 , ",
-    "saved": "2022-09-20, 05:11:27"
+    "saved": "2022-09-20, 09:01:48"
   },
   "project": {
     "AUTHOR": "",
@@ -73,7 +73,6 @@
     },
     "RESOURCES": [],
     "SOURCES": [
-      "__init__.py",
       "firefox_newuser",
       "setup.py"
     ],
