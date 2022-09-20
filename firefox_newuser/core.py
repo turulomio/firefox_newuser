@@ -1,12 +1,12 @@
-from os import path, makedirs, system
+from os import path, makedirs, system, listdir
 from colorama import init, Fore, Style
 from getpass import getuser
 from gettext import translation
 from importlib.resources import files
 from psutil import process_iter
+from shutil import move
 from subprocess import run, PIPE, STDOUT
-from sys import stdout
-from time import sleep
+from sys import argv, stdout
 
 
 try:    
@@ -93,6 +93,8 @@ def detect_file_contents(file, content, additional_fail_comments):
 
 def main():
     init()
+    sync_path="/root" if len(argv)==1 else argv[1]
+    
     if getuser()=="root":
         detect_file_contents(
             "/etc/pulse/default.pa", 
@@ -122,6 +124,19 @@ def main():
             "userdel firefox_newuser", 
             _("Deleting user 'firefox_newuser'...")
         )
+
+        
+        sync_files=[]
+        for filename in listdir("/home/firefox_newuser/sync/"):
+            sync_files.append(filename)
+        
+        if len(sync_files)>0:
+            stdout.write(Style.BRIGHT + _("Moving {0} files from sync directory to '{1}'...").format(len(sync_files), sync_path) + Style.RESET_ALL+" ")
+            for filename in sync_files:
+                move(path.join('/home/firefox_newuser/sync', filename), path.join(sync_path, filename))
+            print(string_ok())
+
+        
         run("rm -Rf /home/firefox_newuser", shell=True, capture_output=True)
                 
         detect_condition(
