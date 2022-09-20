@@ -1,0 +1,404 @@
+# Spanish translations for PACKAGE package
+# Traducciones al español para el paquete PACKAGE.
+# Copyright (C) 2015 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# root <turulomio@yahoo.es>, 2015, 2020.
+msgid ""
+msgstr ""
+"Project-Id-Version: TooManyFiles\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-09-20 05:45+0200\n"
+"PO-Revision-Date: 2020-04-03 08:54+0200\n"
+"Last-Translator: trabajo <turulomio@yahoo.es>\n"
+"Language-Team: Spanish <kde-i18n-doc@kde.org>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 19.12.3\n"
+
+msgid "OK"
+msgstr ""
+
+#, python-brace-format
+msgid "Detecting file '{0}'..."
+msgstr ""
+
+#~ msgid "There was a problem converting com.sun.star.util.DateTime to datetime."
+#~ msgstr "Hubo un problema al convertir com.sun.star.util.DateTime a datetime"
+
+#~ msgid "Developed by Mariano Muñoz 2020-{}"
+#~ msgstr "Desarrollado por Mariano Muñoz 2021-{}"
+
+#, python-brace-format
+#~ msgid "I couldn't detect unogenerator process info ({attempt}/{attempts} attempts)"
+#~ msgstr "No pude detectar la información de los procesos de unogenerator ({attempt}/{attempts} intentos)"
+
+#~ msgid "Have you launched unogenerator instances?. Please run unogenerator_start"
+#~ msgstr "¿Has iniciado las instancias de unogenerator?. Por favor ejecute unogenerator_start"
+
+#~ msgid "I couldn't detect unogenerator instances"
+#~ msgstr "No pude detectar las instancias de unogenerator"
+
+#~ msgid "There was an error triming image. Is convert command (from Imagemagick) installed?"
+#~ msgstr "Hubo un error al eliminar espacio innecesario de la imagen. ¿Está el comando 'convert' de Imagemagick instalado?"
+
+#~ msgid "Error deleting: {} -> {}"
+#~ msgstr "Error al borrar: {} -> {}"
+
+#~ msgid "Create example files using unogenerator module"
+#~ msgstr "Crea ficheros de ejemplo usando el módulo de unogenerator"
+
+#~ msgid "Debug program information"
+#~ msgstr "Información de depuración del programa"
+
+#~ msgid "All process took {}"
+#~ msgstr "Todos los procesos tardaron {}"
+
+#, python-brace-format
+#~ msgid "Launching concurrent demo with {num_instances} workers to a daemon with {num_instances} instances from {first_port} port"
+#~ msgstr "Lanzando la demostración concurrente con {num_instances} procesos a un demonio con {num_instances} instancias desde el puerto {first_port}"
+
+#~ msgid "UnoGenerator ODS example"
+#~ msgstr "Ejemplo ODS con UnoGenerator"
+
+#~ msgid "Demo with ODS class"
+#~ msgstr "Demostración de la clase ODS"
+
+#, python-brace-format
+#~ msgid "This file have been generated with UnoGenerator-{__version__}. You can see UnoGenerator main page in http://github.com/turulomio/unogenerator"
+#~ msgstr "Este fichero ha sido generado con UnoGenerator-{__version__}. La pagina principal del proyecto se encuentra en http://github.com/turulomio/unogenerator"
+
+#~ msgid "Style name"
+#~ msgstr "Nombre de estilo"
+
+#~ msgid "Date and time"
+#~ msgstr "Fecha y hora"
+
+#~ msgid "Date"
+#~ msgstr "Fecha"
+
+#~ msgid "Integer"
+#~ msgstr "Entero"
+
+#~ msgid "Euros"
+#~ msgstr "Euros"
+
+#~ msgid "Dollars"
+#~ msgstr "Dólares"
+
+#~ msgid "Percentage"
+#~ msgstr "Porcentaje"
+
+#~ msgid "Number with 2 decimals"
+#~ msgstr "Número con 2 decimales"
+
+#~ msgid "Number with 6 decimals"
+#~ msgstr "Número con 6 decimales"
+
+#~ msgid "Time"
+#~ msgstr "Tiempo"
+
+#~ msgid "Boolean"
+#~ msgstr "Booleano"
+
+#~ msgid "String"
+#~ msgstr "Cadena"
+
+#~ msgid "unogenerator_example_{language}{suffix}.ods took {datetime.now()-doc.statistics.init} in {port}"
+#~ msgstr "unogenerator_example_{language}{suffix}.ods tardó {datetime.now()-doc.statistics.init} en {port}"
+
+#~ msgid "UnoGenerator documentation"
+#~ msgstr "Documentación de UnoGenerator"
+
+#~ msgid "Unogenerator python module documentation"
+#~ msgstr "Documentación del módulo Unogenerator de python"
+
+#, python-brace-format
+#~ msgid "Version: {__version__}"
+#~ msgstr "Versión: {__version__}"
+
+#~ msgid "Introduction"
+#~ msgstr "Introducción"
+
+#~ msgid "UnoGenerator uses Libreoffice UNO API python bindings to generate documents."
+#~ msgstr "UnoGenerator usa la API de python de Libreoffice para generar documentos."
+
+#~ msgid "So in order to use, you need to launch a --headless libreoffice instance."
+#~ msgstr "Por ello se necesita lanzar una instancia de LibreOffice --headless."
+
+#~ msgid "We recomend to launch then easily with 'unogenerator_start' script."
+#~ msgstr "Recomendamos lanzarlo facilmente con el script 'unogenerator_start'."
+
+#~ msgid "You can edit this one or create your own."
+#~ msgstr "Puedes editar éste o crear el tuyo."
+
+#~ msgid "This document has been created with 'standard.odt' files that you can find inside this python module."
+#~ msgstr "Este documento ha sido creado con 'standard.odt', que lo puedes encontrar dentro de este modulo"
+
+#~ msgid "Installation"
+#~ msgstr "Instalación"
+
+#~ msgid "You can use pip to install this python package:"
+#~ msgstr "Puedes usar pip para instalar este paquete python:"
+
+#~ msgid "ODT 'Hello World' example"
+#~ msgstr "Ejemplo 'Hola Mundo' de ODT"
+
+#~ msgid "This is a Hello World example. You get the example in odt, docx and pdf formats:"
+#~ msgstr "Este un ejemplo 'Hello World'. Has generado el ejemplo en los formatos odt, docx y pdf"
+
+#~ msgid "ODT"
+#~ msgstr "ODT"
+
+#~ msgid "ODT files can be quickly generated with UnoGenerator."
+#~ msgstr "Los ficheros ODT son generados rápidamente con UnoGenerator."
+
+#~ msgid "There is a predefined template in code called 'standard.odt' to help you with edition."
+#~ msgstr "Hay una plantilla predefinida en el código llamada 'standard.odt' para ayudar con la edición."
+
+#~ msgid "Calling the ODT constructor"
+#~ msgstr "Llamando al constructor ODT"
+
+#~ msgid "You can call ODT constructor in this ways:"
+#~ msgstr "Puedes llamar al constructor ODT de estas maneras:"
+
+#~ msgid "ODT with standard template (Recomended)."
+#~ msgstr "ODT con la plantilla estándard (Recomendado)."
+
+#~ msgid "There is a predefined template in code called 'standard.odt', inside this python module, to help you with edition, although you can use your own ones."
+#~ msgstr "Hay una plantilla predefinida llamada 'standard.odt' dentro de este módulo de python, para ayudarte con la edición, aunque tu puedes usar tus propias plantillas."
+
+#~ msgid "With this mode you can create new documents"
+#~ msgstr "Con este modo puedes crear nuevos documentos"
+
+#~ msgid "ODT with template or file (Recomended)."
+#~ msgstr "ODT con plantilla o fichero (Recomendado)."
+
+#~ msgid "ODT without template."
+#~ msgstr "ODT sin plantilla"
+
+#~ msgid "With this mode you can write your files with Libreoffice default styles."
+#~ msgstr "Con esta modalidad puedes escribir tus ficheros con los estilos por defecto de Libreoffice."
+
+#~ msgid "If you want to create new ones, you should write them using Libreoffice API code"
+#~ msgstr "Si quieres crear nuevos, deberías escibirlos usando código de la API de Libreoffice"
+
+#~ msgid "Styles"
+#~ msgstr "Estilos"
+
+#~ msgid "To call default Libreoffice paragraph styles you must use their english name."
+#~ msgstr "Para invocar los estilos por defecto de Libreoffice, debes usar su nombre en inglés."
+
+#~ msgid "You can see their names with this method:"
+#~ msgstr "Puedes ver sus nombres con este método:"
+
+#~ msgid "Tables"
+#~ msgstr "Tablas"
+
+#~ msgid "Concept"
+#~ msgstr "Concepto"
+
+#~ msgid "Value"
+#~ msgstr "Valor"
+
+#~ msgid "Comment"
+#~ msgstr "Comentario"
+
+#~ msgid "Text"
+#~ msgstr "Texto"
+
+#~ msgid "This is a text"
+#~ msgstr "Esto es un texto"
+
+#~ msgid "Good"
+#~ msgstr "Bueno"
+
+#~ msgid "Datetime"
+#~ msgstr "Fecha y hora"
+
+#~ msgid "Float"
+#~ msgstr "Float"
+
+#~ msgid "Currency"
+#~ msgstr "Divisa"
+
+#~ msgid "We can create tables with diferent font sizes and formats:"
+#~ msgstr "Podemos crear tablas con diferentes tamaños de fuentes y formatos:"
+
+#~ msgid "Lists and numbered lists"
+#~ msgstr "Listas y listas numeradas"
+
+#~ msgid "Simple list"
+#~ msgstr "Lista simle"
+
+#~ msgid "Hyperlinks"
+#~ msgstr "Hiperenlaces"
+
+#~ msgid "If you want to go to Google, click on this "
+#~ msgstr "Si quieres ir a Google, pulsa en este "
+
+#~ msgid "That's all folks!"
+#~ msgstr "¡Eso es todo amigos!"
+
+#~ msgid "Images"
+#~ msgstr "Imágenes"
+
+#~ msgid "This is an image loaded from bytes: "
+#~ msgstr "Esta es una imagen cargado desde unos bytes: "
+
+#~ msgid "As you can see, I can reuse it one hundred times. File size will not be increased because I used reference names."
+#~ msgstr "Como puedes ver, puedo reutilizar la imagen cien veces. El tamaño del fichero no aumentará porque uso referencias."
+
+#~ msgid "The next paragraph is generated with the illustration method"
+#~ msgstr "El siguiente párrafo es generado con el método illustration"
+
+#~ msgid "You can play with image width and height:"
+#~ msgstr "Puedes jugar con la anchura y altura de la imagen:"
+
+#~ msgid "Search and Replace"
+#~ msgstr "Buscar y reemplazar"
+
+#~ msgid "ODS"
+#~ msgstr "ODS"
+
+#~ msgid "ODS 'Hello World' example"
+#~ msgstr "Ejemplo 'Hola mundo' con ODS"
+
+#~ msgid "This paragraph was set at the end of the code after a find and replace command."
+#~ msgstr "Este párrafo se puso al final del código después de un comando de busqueda y sustitución."
+
+#~ msgid "This paragraph was set after replacement."
+#~ msgstr "Este párrafo fue añadido después de la sustitución."
+
+#~ msgid "This paragraph was set after a page break."
+#~ msgstr "Este párrafo se añadió despues de un salto de página."
+
+#~ msgid "Total"
+#~ msgstr "Total"
+
+#~ msgid "Sum of totals"
+#~ msgstr "Suma de totales"
+
+#~ msgid "No data to show"
+#~ msgstr "No hay datos para mostrar"
+
+#, python-brace-format
+#~ msgid "{0} ({1} of {2})"
+#~ msgstr "{0} ({1} de {2})"
+
+#, python-brace-format
+#~ msgid "More than {0} rows. Spliting {1} of {2} sheets"
+#~ msgstr "Más de {0} filas. Dividiendo {1} de {2} hojas"
+
+#~ msgid "Launches libreoffice server to run unogenerator code"
+#~ msgstr "Lanza el servidor de libreoffice para ejecutar código de UnoGenerator"
+
+#, python-brace-format
+#~ msgid "It seems that server is already launched in port {first_port}"
+#~ msgstr "Parece que el servidor ya se ha lanzado en el puerto {first_port}"
+
+#~ msgid "You can see instances output in /var/log/unogenerator"
+#~ msgstr "Puedes ver registros de las instancias en /var/log/unogenerator"
+
+#~ msgid "Stops libreoffice server to finish using unogenerator code"
+#~ msgstr "Para el servidor de LibreOffice, para terminar de usar código de UnoGenerator"
+
+#~ msgid "Monitor unogenerator statistics"
+#~ msgstr "Estadísticas del monitor de unogenerator"
+
+#~ msgid "Instances: {green(instances)}"
+#~ msgstr "Instancias: {green(instances)}"
+
+#~ msgid "Ports used: {green(list2string(list_ports))}"
+#~ msgstr "Puertos usados: {green(list2string(list_ports))}"
+
+#, python-brace-format
+#~ msgid "Memory used: {str_mem_total}"
+#~ msgstr "Memoria usada: {str_mem_total}"
+
+#, python-brace-format
+#~ msgid "CPU percentage: {str_cpu_percentage}"
+#~ msgstr "Porcentage de CPU: {str_cpu_percentage}"
+
+#, python-brace-format
+#~ msgid "Connections: {str_connections}"
+#~ msgstr "Conexiones: {str_connections}"
+
+#~ msgid "Restarting server"
+#~ msgstr "Reiniciando servidor"
+
+#~ msgid "Server restarted"
+#~ msgstr "Servidor reiniciado"
+
+#~ msgid "Server wasn't restarted because it's busy"
+#~ msgstr "El servidor no fue reiniciado porque está ocupado"
+
+#~ msgid "Server doesn't need to be restarted"
+#~ msgstr "El servidor no necesita ser reiniciado"
+
+#~ msgid "Number"
+#~ msgstr "Número"
+
+#~ msgid "Total seconds"
+#~ msgstr "Segundos totales"
+
+#~ msgid "Average"
+#~ msgstr "Media"
+
+#~ msgid "Cells"
+#~ msgstr "Celdas"
+
+#~ msgid "Merged cells"
+#~ msgstr "Celdas unidas"
+
+#~ msgid "Cell gets"
+#~ msgstr "Lectura de celdas"
+
+#~ msgid "Sheet creations"
+#~ msgstr "Nuevas hojas"
+
+#~ msgid "Sheet freezes"
+#~ msgstr "Inmovilizaciones de hoja"
+
+#~ msgid "Generate a po and pot file from ODF"
+#~ msgstr "Genera un fichero po y pot de un ODF"
+
+#~ msgid "Perhaps a merged string"
+#~ msgstr "Quizas una cadena unida"
+
+#~ msgid "Extracting strings from:"
+#~ msgstr "Extrayendo cadenas de:"
+
+#~ msgid "Only ODT files are supported"
+#~ msgstr "Solo están soportados los documentos ODT"
+
+#~ msgid "Translating files to:"
+#~ msgstr "Traduciendo ficheros a:"
+
+#, python-brace-format
+#~ msgid "Changing port {old} to {self.loserver_port} {i} times"
+#~ msgstr "Cambiando el puerto {old} a {self.loserver_port} {i} vez"
+
+#~ msgid "This process died"
+#~ msgstr "Este proceso murió"
+
+#~ msgid "Document hasn't been saved."
+#~ msgstr "El documento no ha sido guardado."
+
+#~ msgid "Filename extension must be 'odt'."
+#~ msgstr "La extensión del nombre del fichero debe ser 'odt'."
+
+#~ msgid "Filename extension must be 'pdf'."
+#~ msgstr "La extensión del nombre del fichero debe ser 'pdf'."
+
+#~ msgid "Filename extension must be 'docx'."
+#~ msgstr "La extensión del nombre del fichero debe ser 'docx'."
+
+#~ msgid "Filename extension must be 'ods'."
+#~ msgstr "La extensión del nombre del fichero debe ser 'ods'."
+
+#~ msgid "Filename extension must be 'xlsx'."
+#~ msgstr "La extensión del nombre del fichero debe ser 'xlsx'."

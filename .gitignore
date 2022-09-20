@@ -1,4 +1,4 @@
-.eric6project/
+.eric7project/
 .ropeproject/
 .directory/
 *.pyc
@@ -11,3 +11,7 @@ cur/
 tmp/
 __pycache__/
 *.DS_Store
+.jedi/
+build/
+dist/
+firefox_newuser.egg-info/
