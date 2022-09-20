@@ -69,7 +69,7 @@ class Procedure(Command):
 
     def run(self):
         print("""Nueva versión:
-  * Cambiar la versión y la fecha en commons.py
+  * Cambiar la versión y la fecha en __init__.py
   * Modificar el Changelog en README
   * python setup.py translate
   * linguist

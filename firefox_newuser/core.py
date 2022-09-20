@@ -1,12 +1,14 @@
-from os import path, makedirs, system, listdir
+from argparse import ArgumentParser, RawTextHelpFormatter
 from colorama import init, Fore, Style
+from firefox_newuser.__init__ import __versiondate__, __version__
 from getpass import getuser
 from gettext import translation
 from importlib.resources import files
+from os import path, makedirs, system, listdir
 from psutil import process_iter
 from shutil import move
 from subprocess import run, PIPE, STDOUT
-from sys import argv, stdout
+from sys import stdout
 
 
 try:    
@@ -35,6 +37,11 @@ def string_ok():
 def string_fail():
         return Style.BRIGHT + "[" + Fore.RED+_("FAILED") + Fore.WHITE + "]" + Style.RESET_ALL
 
+## Function used in argparse_epilog
+## @return String
+def argparse_epilog():
+    return _("Developed by Mariano Muñoz 2022-{}").format(__versiondate__.year)
+    
 ## @param condition is a boolean expresion
 def detect_condition(condition,  title, additional_fail_comments=[]):
     print(Style.BRIGHT + title + Style.RESET_ALL , end="")
@@ -93,7 +100,10 @@ def detect_file_contents(file, content, additional_fail_comments):
 
 def main():
     init()
-    sync_path="/root" if len(argv)==1 else argv[1]
+    parser=ArgumentParser(description=_('Enables a new user firefox'), epilog=argparse_epilog(), formatter_class=RawTextHelpFormatter)
+    parser.add_argument('--version', action='version', version=__version__)
+    parser.add_argument('--sync', help=_("Directory to sync files to after closing firefox"), default="/root")
+    args=parser.parse_args()
     
     if getuser()=="root":
         detect_file_contents(
@@ -131,9 +141,9 @@ def main():
             sync_files.append(filename)
         
         if len(sync_files)>0:
-            stdout.write(Style.BRIGHT + _("Moving {0} files from sync directory to '{1}'...").format(len(sync_files), sync_path) + Style.RESET_ALL+" ")
+            stdout.write(Style.BRIGHT + _("Moving {0} files from sync directory to '{1}'...").format(len(sync_files), args.sync) + Style.RESET_ALL+" ")
             for filename in sync_files:
-                move(path.join('/home/firefox_newuser/sync', filename), path.join(sync_path, filename))
+                move(path.join('/home/firefox_newuser/sync', filename), path.join(args.sync, filename))
             print(string_ok())
 
         

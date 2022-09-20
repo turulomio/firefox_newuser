@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.5.0
+- Changed to a python app
+
 ## 0.4.0
 - Added sync directory.
 - .cache/doc is unmounted now cache/doc
