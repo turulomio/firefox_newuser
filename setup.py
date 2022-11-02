@@ -3,7 +3,6 @@ from os import system, chdir
 from platform import system as platform_system
 from site import getsitepackages
 
-
 class Reusing(Command):
     description = "Fetch remote modules"
     user_options = [
@@ -164,7 +163,7 @@ setup(name='firefox_newuser',
      author_email='turulomio@yahoo.es',
      license='GPL-3',
      packages=['firefox_newuser', 'firefox_newuser.locale'],
-     install_requires=["colorama", "psutil"],
+     install_requires=["colorama", "psutil", "tqdm"],
      entry_points = {'console_scripts': [
                             'firefox_newuser=firefox_newuser.core:main',
                         ],

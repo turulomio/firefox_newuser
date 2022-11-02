@@ -3,13 +3,14 @@ from colorama import init, Fore, Style
 from firefox_newuser.__init__ import __versiondate__, __version__
 from getpass import getuser
 from gettext import translation
+from glob import glob
 from importlib.resources import files
-from os import path, makedirs, system, listdir
+from os import path, makedirs, system
 from psutil import process_iter
 from shutil import move
 from subprocess import run, PIPE, STDOUT
 from sys import stdout
-
+from tqdm import tqdm
 
 try:    
     t=translation('firefox_newuser', files("firefox_newuser") / 'locale')
@@ -118,7 +119,6 @@ def main():
             _("Adding user 'firefox_newuser'...")
         )
         makedirs("/home/firefox_newuser/.pulse/", exist_ok=True)
-        makedirs("/home/firefox_newuser/sync/", exist_ok=True)
         with open("/home/firefox_newuser/.pulse/client.conf", "w") as f:
             f.write("default-server = unix:/tmp/my-pulse-socket-name")
         run("chown -Rvc firefox_newuser:users /home/firefox_newuser", shell=True, capture_output=True)
@@ -128,23 +128,30 @@ def main():
         #Killing firefox
         run("su - firefox_newuser -c 'fusermount -u /home/firefox_newuser/.cache/doc'", shell=True, capture_output=True)
         run("pkill -9 -U firefox_newuser", shell=True, capture_output=True)
-        #sleep(2)
         
         detect_command(
             "userdel firefox_newuser", 
             _("Deleting user 'firefox_newuser'...")
         )
-
         
         sync_files=[]
-        for filename in listdir("/home/firefox_newuser/sync/"):
-            sync_files.append(filename)
+        for filename in glob('/home/firefox_newuser/**', recursive=True):
+            if path.isfile(filename):
+                sync_files.append(filename)
         
         if len(sync_files)>0:
-            stdout.write(Style.BRIGHT + _("Moving {0} files from sync directory to '{1}'...").format(len(sync_files), args.sync) + Style.RESET_ALL+" ")
-            for filename in sync_files:
-                move(path.join('/home/firefox_newuser/sync', filename), path.join(args.sync, filename))
+            for filename in tqdm(sync_files, desc=Style.BRIGHT +_("Moving {0} files to '{1}'").format(len(sync_files), args.sync)+ Style.RESET_ALL):
+                move(filename, path.join(args.sync, path.basename(filename)))
+            
+        stdout.write(Style.BRIGHT + _("Checking {0} files have been moved to '{1}'...").format(len(sync_files), args.sync) + Style.RESET_ALL+" ")
+        errors=0
+        for filename in sync_files:
+            if not path.exists(path.join(args.sync, path.basename(filename))):
+                errors=errors+1
+        if errors==0:
             print(string_ok())
+        else:
+            print(string_fail())
 
         
         run("rm -Rf /home/firefox_newuser", shell=True, capture_output=True)
