@@ -171,6 +171,6 @@ def main():
     else:
         run("xhost +", shell=True, capture_output=True)
         print(_("Introduce root password to launch firefox_newuser"))
-        system("su - -c firefox_newuser")
+        system(f"""su - -c "firefox_newuser --sync '{args.sync}'" """)
 
 
