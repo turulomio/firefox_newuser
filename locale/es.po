@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TooManyFiles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-02 09:02+0100\n"
+"POT-Creation-Date: 2022-11-02 10:08+0100\n"
 "PO-Revision-Date: 2020-04-03 08:54+0200\n"
 "Last-Translator: trabajo <turulomio@yahoo.es>\n"
 "Language-Team: Spanish <kde-i18n-doc@kde.org>\n"
@@ -48,28 +48,29 @@ msgstr "Detectando contenido de fichero en '{0}'..."
 msgid "'{0}' wasn't found in '{1}'"
 msgstr "'{0}' no fue encontrado en '{1}'"
 
-msgid "Enables a new user firefox"
-msgstr "Habilita un nuevo usuario de firefox"
+msgid "Script to execute a firefox instance with a recently created user. It deletes user after firefox execution"
+msgstr "Programa que ejecuta una instancia de firefox con un usuario recién creado. Lo borra después de la ejecución de firefox"
 
 msgid "Directory to sync files to after closing firefox"
 msgstr "Directorio al que sincronizar ficheros después de cerrar firefox"
 
 msgid "You need to set it up exactly in order to have sound enabled"
-msgstr ""
+msgstr "Necesitas configurarlo de forma exacta para tener el sonido habilitado"
 
 msgid "Adding user 'firefox_newuser'..."
-msgstr ""
+msgstr "Añadiendo el usuario 'firefox_newuser'..."
 
 msgid "Deleting user 'firefox_newuser'..."
-msgstr ""
+msgstr "Borrando el usuario 'firefox_newuser'..."
 
 #, python-brace-format
 msgid "Moving {0} files to '{1}'"
-msgstr ""
+msgstr "Moviendo {0} ficheros a '{1}'"
 
 #, python-brace-format
 msgid "Checking {0} files have been moved to '{1}'..."
-msgstr ""
+msgstr "Comprobando que {0} ficheros han sido movidos a '{1}'..."
 
 msgid "Introduce root password to launch firefox_newuser"
-msgstr ""
+msgstr "Introduzca la contraseña de root para ejecutar firefox_newuser"
+

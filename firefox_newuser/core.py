@@ -101,7 +101,7 @@ def detect_file_contents(file, content, additional_fail_comments):
 
 def main():
     init()
-    parser=ArgumentParser(description=_('Enables a new user firefox'), epilog=argparse_epilog(), formatter_class=RawTextHelpFormatter)
+    parser=ArgumentParser(description=_('Script to execute a firefox instance with a recently created user. It deletes user after firefox execution'), epilog=argparse_epilog(), formatter_class=RawTextHelpFormatter)
     parser.add_argument('--version', action='version', version=__version__)
     parser.add_argument('--sync', help=_("Directory to sync files to after closing firefox"), default="/root")
     args=parser.parse_args()
@@ -143,15 +143,15 @@ def main():
             for filename in tqdm(sync_files, desc=Style.BRIGHT +_("Moving {0} files to '{1}'").format(len(sync_files), args.sync)+ Style.RESET_ALL):
                 move(filename, path.join(args.sync, path.basename(filename)))
             
-        stdout.write(Style.BRIGHT + _("Checking {0} files have been moved to '{1}'...").format(len(sync_files), args.sync) + Style.RESET_ALL+" ")
-        errors=0
-        for filename in sync_files:
-            if not path.exists(path.join(args.sync, path.basename(filename))):
-                errors=errors+1
-        if errors==0:
-            print(string_ok())
-        else:
-            print(string_fail())
+            stdout.write(Style.BRIGHT + _("Checking {0} files have been moved to '{1}'...").format(len(sync_files), args.sync) + Style.RESET_ALL+" ")
+            errors=0
+            for filename in sync_files:
+                if not path.exists(path.join(args.sync, path.basename(filename))):
+                    errors=errors+1
+            if errors==0:
+                print(string_ok())
+            else:
+                print(string_fail())
 
         
         run("rm -Rf /home/firefox_newuser", shell=True, capture_output=True)

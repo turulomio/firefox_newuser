@@ -1,4 +1,7 @@
 # Changelog
+## 0.7.0 (2022-11-02)
+- Personal --sync directory now works
+
 ## 0.6.0 (2022-11-02)
 - Sync files feature improved. You can download files in any place  on firefox_newuser home
 
