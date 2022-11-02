@@ -41,7 +41,7 @@ def string_fail():
 ## Function used in argparse_epilog
 ## @return String
 def argparse_epilog():
-    return _("Developed by Mariano Muñoz 2022-{}").format(__versiondate__.year)
+    return _("Developed by Mariano Muñoz 2020-{}").format(__versiondate__.year)
     
 ## @param condition is a boolean expresion
 def detect_condition(condition,  title, additional_fail_comments=[]):

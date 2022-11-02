@@ -148,7 +148,7 @@ with open('firefox_newuser/__init__.py', encoding='utf-8') as f:
 
 setup(name='firefox_newuser',
      version=__version__,
-     description='Python script to launch firefox in Linus as a new user',
+     description='Python script to launch firefox in Linux as a new user',
      long_description='Project web page is in https://github.com/turulomio/firefox_newuser',
      long_description_content_type='text/markdown',
      classifiers=['Development Status :: 4 - Beta',
@@ -162,7 +162,7 @@ setup(name='firefox_newuser',
      author='Turulomio',
      author_email='turulomio@yahoo.es',
      license='GPL-3',
-     packages=['firefox_newuser', 'firefox_newuser.locale'],
+     packages=['firefox_newuser', 'firefox_newuser.locale.es.LC_MESSAGES', 'firefox_newuser.locale.en.LC_MESSAGES'],
      install_requires=["colorama", "psutil", "tqdm"],
      entry_points = {'console_scripts': [
                             'firefox_newuser=firefox_newuser.core:main',

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TooManyFiles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-20 08:28+0200\n"
+"POT-Creation-Date: 2022-11-02 09:02+0100\n"
 "PO-Revision-Date: 2020-04-03 08:54+0200\n"
 "Last-Translator: trabajo <turulomio@yahoo.es>\n"
 "Language-Team: Spanish <kde-i18n-doc@kde.org>\n"
@@ -20,30 +20,39 @@ msgstr ""
 "X-Generator: Lokalize 19.12.3\n"
 
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 msgid "FAILED"
-msgstr ""
+msgstr "FALLO"
+
+msgid "Developed by Mariano Muñoz 2020-{}"
+msgstr "Desarrollado por Mariano Muñoz 2020-{}"
 
 #, python-brace-format
 msgid "Command '{0}' exited with code {1}"
-msgstr ""
+msgstr "El comando '{0}' termino con código {1}"
 
 #, python-brace-format
 msgid "Detecting file '{0}'..."
-msgstr ""
+msgstr "Detectando fichero '{0}'..."
 
 #, python-brace-format
 msgid "File '{0}' doesn't exist"
-msgstr ""
+msgstr "El fichero '{0}' no existe"
 
 #, python-brace-format
 msgid "Detecting file content in '{0}'..."
-msgstr ""
+msgstr "Detectando contenido de fichero en '{0}'..."
 
 #, python-brace-format
 msgid "'{0}' wasn't found in '{1}'"
-msgstr ""
+msgstr "'{0}' no fue encontrado en '{1}'"
+
+msgid "Enables a new user firefox"
+msgstr "Habilita un nuevo usuario de firefox"
+
+msgid "Directory to sync files to after closing firefox"
+msgstr "Directorio al que sincronizar ficheros después de cerrar firefox"
 
 msgid "You need to set it up exactly in order to have sound enabled"
 msgstr ""
@@ -55,11 +64,12 @@ msgid "Deleting user 'firefox_newuser'..."
 msgstr ""
 
 #, python-brace-format
-msgid "Moving {0} files from sync directory to '{1}'..."
+msgid "Moving {0} files to '{1}'"
+msgstr ""
+
+#, python-brace-format
+msgid "Checking {0} files have been moved to '{1}'..."
 msgstr ""
 
 msgid "Introduce root password to launch firefox_newuser"
 msgstr ""
-
-#~ msgid "Developed by Mariano Muñoz 2020-{}"
-#~ msgstr "Desarrollado por Mariano Muñoz 2021-{}"
