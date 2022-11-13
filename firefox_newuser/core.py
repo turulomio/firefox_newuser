@@ -140,6 +140,7 @@ def main():
                 sync_files.append(filename)
         
         if len(sync_files)>0:
+            makedirs(args.sync, exist_ok=True)
             for filename in tqdm(sync_files, desc=Style.BRIGHT +_("Moving {0} files to '{1}'").format(len(sync_files), args.sync)+ Style.RESET_ALL):
                 move(filename, path.join(args.sync, path.basename(filename)))
             
