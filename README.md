@@ -1,4 +1,7 @@
 # Changelog
+## 0.8.0 (2022-11-13)
+- Sync directory in now created if it doesn't exist.
+
 ## 0.7.0 (2022-11-02)
 - Personal --sync directory now works
 
