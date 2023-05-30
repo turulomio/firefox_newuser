@@ -21,6 +21,11 @@ poethepoet = "^0.20.0"
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
+[tool.poetry.scripts]
+firefox_newuser = "firefox_newuser.core:main"
+firefox_newuser_wayland = "firefox_newuser.core:wayland"
+
+
 [tool.poe.tasks]
 release = { script = "firefox_newuser.poethepoet:release" }
 translate = { script = "firefox_newuser.poethepoet:translate" }

@@ -175,3 +175,80 @@ def main():
         system(f"""su - -c "firefox_newuser --sync '{args.sync}'" """)
 
 
+
+def wayland():
+    init()
+    parser=ArgumentParser(description=_('Script to execute a firefox instance with a recently created user. It deletes user after firefox execution'), epilog=argparse_epilog(), formatter_class=RawTextHelpFormatter)
+    parser.add_argument('--version', action='version', version=__version__)
+    parser.add_argument('--sync', help=_("Directory to sync files to after closing firefox"), default="/root")
+    args=parser.parse_args()
+    
+    if getuser()=="root":
+        detect_file_contents(
+            "/etc/pulse/default.pa", 
+            "load-module module-native-protocol-unix auth-anonymous=1 socket=/tmp/my-pulse-socket-name", 
+            [
+                _("You need to set it up exactly in order to have sound enabled"), 
+            ]
+        )
+        detect_command(
+            "useradd firefox_newuser -g users -G audio,video", 
+            _("Adding user 'firefox_newuser'...")
+        )
+        makedirs("/home/firefox_newuser/.pulse/", exist_ok=True)
+        with open("/home/firefox_newuser/.pulse/client.conf", "w") as f:
+            f.write("default-server = unix:/tmp/my-pulse-socket-name")
+        run("chown -Rvc firefox_newuser:users /home/firefox_newuser", shell=True, capture_output=True)
+        #Launching firefox
+        run("su - firefox_newuser -c 'DISPLAY=:0 firefox --private-window www.google.com'", shell=True, capture_output=True)
+
+        #Killing firefox
+        run("su - firefox_newuser -c 'fusermount -u /home/firefox_newuser/.cache/doc'", shell=True, capture_output=True)
+        run("pkill -9 -U firefox_newuser", shell=True, capture_output=True)
+        
+        detect_command(
+            "userdel firefox_newuser", 
+            _("Deleting user 'firefox_newuser'...")
+        )
+        
+        sync_files=[]
+        for filename in glob('/home/firefox_newuser/**', recursive=True):
+            if path.isfile(filename):
+                sync_files.append(filename)
+        
+        if len(sync_files)>0:
+            makedirs(args.sync, exist_ok=True)
+            for filename in tqdm(sync_files, desc=Style.BRIGHT +_("Moving {0} files to '{1}'").format(len(sync_files), args.sync)+ Style.RESET_ALL):
+                move(filename, path.join(args.sync, path.basename(filename)))
+            
+            stdout.write(Style.BRIGHT + _("Checking {0} files have been moved to '{1}'...").format(len(sync_files), args.sync) + Style.RESET_ALL+" ")
+            errors=0
+            for filename in sync_files:
+                if not path.exists(path.join(args.sync, path.basename(filename))):
+                    errors=errors+1
+            if errors==0:
+                print(string_ok())
+            else:
+                print(string_fail())
+
+        
+        run("rm -Rf /home/firefox_newuser", shell=True, capture_output=True)
+                
+        detect_condition(
+            not path.exists("/home/firefox_newuser/"), 
+            "Checking directory '/home/firefox_newuser' is deleted..."
+        )
+        
+        process_list = [proc.pid for proc in process_iter() if proc.username() == "firefox_newuser"]
+        detect_condition(
+            len(process_list)==0, 
+            "Checking there aren't firefox_newuser process..."
+        )
+        
+  
+    else:
+        run("xhost +", shell=True, capture_output=True)
+        print(_("Introduce root password to launch firefox_newuser"))
+        system(f"""su - -c "firefox_newuser_wayland --sync '{args.sync}'" """)
+
+
