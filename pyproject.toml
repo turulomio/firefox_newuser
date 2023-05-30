@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "firefox-newuser"
+version = "0.8.0"
+description = "Script to execute a firefox instance with a recently created user. It deletes user after firefox execution"
+authors = ["turulomio <turulomio@yahoo.es>"]
+license = "GPL-3.0 license"
+readme = "README.md"
+packages = [{include = "firefox_newuser"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+tqdm = "^4.65.0"
+psutil = "^5.9.5"
+colorama = "^0.4.6"
+
+[tool.poetry.group.dev.dependencies]
+poetry = "^1.5.1"
+poethepoet = "^0.20.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poe.tasks]
+release = { script = "firefox_newuser.poethepoet:release" }
+translate = { script = "firefox_newuser.poethepoet:translate" }
+
+[project.urls]
+homepage = "https://github.com/turulomio/firefox_newuser/"
+repository = "https://github.com/turulomio/firefox_newuser/"
+changelog = "https://github.com/turulomio/firefox_newuser#changelog"
