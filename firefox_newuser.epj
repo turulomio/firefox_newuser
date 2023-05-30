@@ -1,8 +1,8 @@
 {
   "header": {
     "comment": "eric project file for project firefox_newuser",
-    "copyright": "Copyright (C) 2022 , ",
-    "saved": "2022-09-20, 09:01:48"
+    "copyright": "Copyright (C) 2023 , ",
+    "saved": "2023-05-30, 14:42:09"
   },
   "project": {
     "AUTHOR": "",
@@ -11,6 +11,7 @@
     "DOCSTRING": "",
     "DOCUMENTATIONPARMS": {},
     "EMAIL": "",
+    "EMBEDDED_VENV": false,
     "EOL": 0,
     "FILETYPES": {
       "*.e4p": "OTHERS",
@@ -73,8 +74,7 @@
     },
     "RESOURCES": [],
     "SOURCES": [
-      "firefox_newuser",
-      "setup.py"
+      "firefox_newuser"
     ],
     "SPELLEXCLUDES": "",
     "SPELLLANGUAGE": "en_US",
@@ -84,6 +84,7 @@
     "TRANSLATIONPATTERN": "",
     "TRANSLATIONS": [],
     "TRANSLATIONSBINPATH": "",
+    "TRANSLATIONSOURCESTARTPATH": "",
     "UICPARAMS": {
       "Package": "",
       "PackagesRoot": "",
