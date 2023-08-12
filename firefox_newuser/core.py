@@ -1,12 +1,14 @@
 from argparse import ArgumentParser, RawTextHelpFormatter
 from colorama import init, Fore, Style
+from crypt import crypt
 from firefox_newuser.__init__ import __versiondate__, __version__
 from getpass import getuser
 from gettext import translation
 from glob import glob
 from importlib.resources import files
-from os import path, makedirs, system
+from os import path, makedirs, system, environ
 from psutil import process_iter
+from secrets import token_urlsafe
 from shutil import move
 from subprocess import run, PIPE, STDOUT
 from sys import stdout
@@ -178,26 +180,18 @@ def main():
 
 def wayland():
     init()
-    parser=ArgumentParser(description=_('Script to execute a firefox instance with a recently created user. It deletes user after firefox execution'), epilog=argparse_epilog(), formatter_class=RawTextHelpFormatter)
+    parser=ArgumentParser(description=_('Script to execute a firefox instance with a recently created user from wayland. It deletes user after firefox execution'), epilog=argparse_epilog(), formatter_class=RawTextHelpFormatter)
     parser.add_argument('--version', action='version', version=__version__)
     parser.add_argument('--sync', help=_("Directory to sync files to after closing firefox"), default="/root")
     args=parser.parse_args()
     
     if getuser()=="root":
-        detect_file_contents(
-            "/etc/pulse/default.pa", 
-            "load-module module-native-protocol-unix auth-anonymous=1 socket=/tmp/my-pulse-socket-name", 
-            [
-                _("You need to set it up exactly in order to have sound enabled"), 
-            ]
-        )
+        fn_password = token_urlsafe(32)
+        
         detect_command(
-            "useradd firefox_newuser -g users -G audio,video", 
-            _("Adding user 'firefox_newuser'...")
+            f"useradd firefox_newuser -g users -G audio,video -p {crypt(fn_password)}", 
+            _(f"Adding user 'firefox_newuser' with password {fn_password}...")
         )
-        makedirs("/home/firefox_newuser/.pulse/", exist_ok=True)
-        with open("/home/firefox_newuser/.pulse/client.conf", "w") as f:
-            f.write("default-server = unix:/tmp/my-pulse-socket-name")
         run("chown -Rvc firefox_newuser:users /home/firefox_newuser", shell=True, capture_output=True)
         #Launching firefox
         run("su - firefox_newuser -c 'DISPLAY=:0 firefox --private-window www.google.com'", shell=True, capture_output=True)
@@ -249,6 +243,6 @@ def wayland():
     else:
         run("xhost +", shell=True, capture_output=True)
         print(_("Introduce root password to launch firefox_newuser"))
-        system(f"""su - -c "firefox_newuser_wayland --sync '{args.sync}'" """)
+        system(f"""su - -c "{environ["_"]} --sync '{args.sync}'" """) #Launches same program again as root
 
 

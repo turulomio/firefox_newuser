@@ -2,7 +2,7 @@
   "header": {
     "comment": "eric project file for project firefox_newuser",
     "copyright": "Copyright (C) 2023 , ",
-    "saved": "2023-05-30, 14:42:09"
+    "saved": "2023-08-12, 08:46:35"
   },
   "project": {
     "AUTHOR": "",
@@ -57,7 +57,6 @@
     "OTHERS": [
       ".gitignore",
       "LICENSE.txt",
-      "NEW_RELEASE.md",
       "README.md"
     ],
     "OTHERTOOLSPARMS": {},
