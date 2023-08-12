@@ -241,6 +241,7 @@ def wayland():
         
   
     else:
+        run("xhost +", shell=True, capture_output=True)
         print(_("Introduce root password to launch firefox_newuser"))
         system(f"""su - -c "{environ["_"]} --sync '{args.sync}'" """) #Launches same program again as root
 
