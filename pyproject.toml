@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "firefox-newuser"
-version = "0.8.0"
+version = "0.9.0"
 description = "Script to execute a firefox instance with a recently created user. It deletes user after firefox execution"
 authors = ["turulomio <turulomio@yahoo.es>"]
 license = "GPL-3.0 license"

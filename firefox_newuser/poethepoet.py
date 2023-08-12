@@ -11,6 +11,7 @@ def translate():
 def release():
     print("""Nueva versión:
   * Cambiar la versión y la fecha en __init__.py
+  * Cambiar la versión en pyproject.toml
   * Modificar el Changelog en README
   * poe translate
   * Update *.po files
