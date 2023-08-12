@@ -1,4 +1,8 @@
 # Changelog
+## 0.9.0 (2023-08-12)
+- Migrated to pyproject.toml
+- Added wayland support with a new command firefox_newuser_wayland
+
 ## 0.8.0 (2022-11-13)
 - Sync directory in now created if it doesn't exist.
 

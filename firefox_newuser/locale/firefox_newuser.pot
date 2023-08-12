@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-30 12:40+0200\n"
+"POT-Creation-Date: 2023-08-12 09:36+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,4 +70,11 @@ msgid "Checking {0} files have been moved to '{1}'..."
 msgstr ""
 
 msgid "Introduce root password to launch firefox_newuser"
+msgstr ""
+
+msgid "Script to execute a firefox instance with a recently created user from wayland. It deletes user after firefox execution"
+msgstr ""
+
+#, python-brace-format
+msgid "Adding user 'firefox_newuser' with password '{0}' ..."
 msgstr ""

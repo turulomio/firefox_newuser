@@ -190,7 +190,7 @@ def wayland():
         
         detect_command(
             f"useradd firefox_newuser -g users -G audio,video -p {crypt(fn_password)}", 
-            _(f"Adding user 'firefox_newuser' with password '{fn_password}' ...")
+            _("Adding user 'firefox_newuser' with password '{0}' ...").format(fn_password)
         )
         run("chown -Rvc firefox_newuser:users /home/firefox_newuser", shell=True, capture_output=True)
         #Launching firefox

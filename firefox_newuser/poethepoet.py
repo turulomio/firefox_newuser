@@ -12,16 +12,14 @@ def release():
     print("""Nueva versión:
   * Cambiar la versión y la fecha en __init__.py
   * Modificar el Changelog en README
-  * python setup.py translate
-  * linguist
-  * python setup.py translate
-  * python setup.py uninstall; python setup.py install
+  * poe translate
+  * Update *.po files
+  * poe translate
   * git commit -a -m 'firefox_newuser-{0}'
   * git push
   * Hacer un nuevo tag en GitHub
-  * python setup.py sdist
-  * twine upload dist/firefox_newuser-{0}.tar.gz 
-  * python setup.py uninstall
+  * poetry build
+  * poetry publish --username --password  
   * Crea un nuevo ebuild de firefox_newuser Gentoo con la nueva versión
   * Subelo al repositorio del portage
 
