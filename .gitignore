@@ -15,4 +15,3 @@ __pycache__/
 build/
 dist/
 firefox_newuser.egg-info/
-poetry.lock
