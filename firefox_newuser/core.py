@@ -174,7 +174,7 @@ def main():
     else:
         run("xhost +", shell=True, capture_output=True)
         print(_("Introduce root password to launch firefox_newuser"))
-        system(f"""su - -c "firefox_newuser --sync '{args.sync}'" """)
+        system(f"""su - -c "{environ["_"]} --sync '{args.sync}'" """) #Launches same program again as root
 
 
 
@@ -190,11 +190,11 @@ def wayland():
         
         detect_command(
             f"useradd firefox_newuser -g users -G audio,video -p {crypt(fn_password)}", 
-            _(f"Adding user 'firefox_newuser' with password {fn_password}...")
+            _(f"Adding user 'firefox_newuser' with password '{fn_password}' ...")
         )
         run("chown -Rvc firefox_newuser:users /home/firefox_newuser", shell=True, capture_output=True)
         #Launching firefox
-        run("su - firefox_newuser -c 'DISPLAY=:0 firefox --private-window www.google.com'", shell=True, capture_output=True)
+        run("su firefox_newuser -c 'firefox --private-window www.google.com'", shell=True, capture_output=True)
 
         #Killing firefox
         run("su - firefox_newuser -c 'fusermount -u /home/firefox_newuser/.cache/doc'", shell=True, capture_output=True)
@@ -241,7 +241,6 @@ def wayland():
         
   
     else:
-        run("xhost +", shell=True, capture_output=True)
         print(_("Introduce root password to launch firefox_newuser"))
         system(f"""su - -c "{environ["_"]} --sync '{args.sync}'" """) #Launches same program again as root
 
