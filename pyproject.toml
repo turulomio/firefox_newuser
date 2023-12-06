@@ -8,14 +8,14 @@ readme = "README.md"
 packages = [{include = "firefox_newuser"}]
 
 [tool.poetry.dependencies]
-python = "^3.11"
-tqdm = "^4.66.0"
-psutil = "^5.9.5"
-colorama = "^0.4.6"
+python = ">=3.9,<4.0"
+tqdm = ">=4.66.0"
+psutil = ">=5.9.5"
+colorama = ">=0.4.6"
 
 [tool.poetry.group.dev.dependencies]
-poetry = "^1.5.1"
-poethepoet = "^0.20.0"
+poetry = ">=1.5.1"
+poethepoet = ">=0.20.0"
 
 [build-system]
 requires = ["poetry-core"]
