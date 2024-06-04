@@ -189,13 +189,23 @@ def wayland():
         fn_password = token_urlsafe(32)
         
         detect_command(
-            f"useradd firefox_newuser -g users -G audio,video -p {crypt(fn_password)}", 
+            f"useradd firefox_newuser -g users -G audio,video,pipewire -p {crypt(fn_password)}", 
             _("Adding user 'firefox_newuser' with password '{0}' ...").format(fn_password)
         )
         run("chown -Rvc firefox_newuser:users /home/firefox_newuser", shell=True, capture_output=True)
         #Launching firefox
-        run("su firefox_newuser -c 'firefox --private-window www.google.com'", shell=True, capture_output=True)
+        #su - otheruser -c "XDG_RUNTIME_DIR=/run/user/$(id -u otheruser) DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u otheruser)/bus paplay /path/to/soundfile"
 
+        #run("su firefox_newuser -c 'XDG_RUNTIME_DIR=/run/user/1000 aplay /usr/share/sounds/alsa/Front_Center.wav'", shell=True, capture_output=True)
+#        system("chmod 777 -Rv /run/user/1000 ")
+#        system("chown firefox_newuser:users -Rv /run/user/1004 ")
+        system("id firefox_newuser")
+        system("su firefox_newuser -c 'gentoo-pipewire-launcher restart'")
+        system("su firefox_newuser -c 'ls -la /run/user'")
+        system("su firefox_newuser -c 'firefox --private-window https://www.youtube.com/watch?v=xA142IsjQiE'")
+
+
+        system("id -u firefox_newuser")
         #Killing firefox
         run("su - firefox_newuser -c 'fusermount -u /home/firefox_newuser/.cache/doc'", shell=True, capture_output=True)
         run("pkill -9 -U firefox_newuser", shell=True, capture_output=True)

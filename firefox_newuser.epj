@@ -1,8 +1,8 @@
 {
   "header": {
     "comment": "eric project file for project firefox_newuser",
-    "copyright": "Copyright (C) 2023 , ",
-    "saved": "2023-08-12, 08:46:35"
+    "copyright": "Copyright (C) 2024 , ",
+    "saved": "2024-04-18, 19:31:30"
   },
   "project": {
     "AUTHOR": "",
@@ -73,8 +73,12 @@
     },
     "RESOURCES": [],
     "SOURCES": [
-      "firefox_newuser"
+      "firefox_newuser",
+      "firefox_newuser/__init__.py",
+      "firefox_newuser/core.py",
+      "firefox_newuser/poethepoet.py"
     ],
+    "SOURCESDIR": "",
     "SPELLEXCLUDES": "",
     "SPELLLANGUAGE": "en_US",
     "SPELLWORDS": "",
