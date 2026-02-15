@@ -1,21 +1,20 @@
 # Firefox NewUser
 
-Script para ejecutar una instancia de Firefox con un usuario temporal creado dinámicamente. El usuario y todos sus datos se eliminan automáticamente al cerrar el navegador, garantizando una sesión limpia y aislada.
+Script para ejecutar una instancia de Firefox con un usuario temporal creado dinámicamente **exclusivamente en entornos Wayland**. El usuario y todos sus datos se eliminan automáticamente al cerrar el navegador, garantizando una sesión limpia y aislada.
 
 ## Características
 
 - **Aislamiento total:** Crea un usuario de sistema (`firefox_newuser`) exclusivo para la sesión.
 - **Limpieza automática:** Elimina el usuario, su grupo y su directorio `/home` tras la ejecución.
 - **Sincronización de archivos:** Permite mover archivos descargados o creados durante la sesión a un directorio persistente antes de la eliminación.
-- **Soporte Multi-entorno:** Incluye comandos específicos para X11 y Wayland.
-- **Sonido:** Configuración para habilitar audio mediante PulseAudio.
+- **Optimizado para Wayland:** Utiliza la gestión de sesiones nativa para entornos modernos.
 
 ## Requisitos
 
 - Python >= 3.10
 - Privilegios de **root** (el script los solicitará mediante `su` si se ejecuta como usuario normal).
 - Firefox instalado.
-- Herramientas de sistema: `useradd`, `userdel`, `xhost` (para X11), `pkill`.
+- Herramientas de sistema: `useradd`, `userdel`, `xhost`, `pkill`.
 
 ## Instalación
 
@@ -27,9 +26,8 @@ poetry install
 
 ## Uso
 
-El proyecto expone dos puntos de entrada principales:
+El proyecto expone un punto de entrada principal:
 
-### 1. X11 (Entorno estándar)
 ```bash
 firefox_newuser --sync /ruta/de/destino
 ```
@@ -60,4 +58,3 @@ El proyecto utiliza `poethepoet` para tareas comunes:
 ## Licencia
 
 Este proyecto está bajo la licencia **GPL-3.0-only**. Consulta el archivo `LICENSE.txt` para más detalles.
-

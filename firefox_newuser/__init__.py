@@ -1,4 +1,2 @@
-from datetime import datetime
-__version__= '0.9.0'
-__versiondatetime__=datetime(2023, 8, 12, 9, 27)
-__versiondate__=__versiondatetime__.date()
+from firefox_newuser.commons import __version__, __versiondatetime__, __versiondate__, add_user_securely
+from firefox_newuser.core import main
