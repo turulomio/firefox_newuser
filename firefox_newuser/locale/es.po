@@ -1,14 +1,14 @@
-# Spanish translations for PACKAGE package
-# Traducciones al español para el paquete PACKAGE.
-# Copyright (C) 2015 THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# Spanish translations for Firefox NewUser.
+# Traducciones al español para el paquete Firefox NewUser.
+# Copyright (C) 2026 Mariano Muñoz
+# This file is distributed under the same license as the Firefox NewUser package.
 #
-# root <turulomio@yahoo.es>, 2015, 2020.
+# root <turulomio@yahoo.es>, 2015, 2020, 2026.
 msgid ""
 msgstr ""
-"Project-Id-Version: TooManyFiles\n"
+"Project-Id-Version: Firefox NewUser\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-12 09:35+0200\n"
+"POT-Creation-Date: 2026-02-15 11:06+0100\n"
 "PO-Revision-Date: 2020-04-03 08:54+0200\n"
 "Last-Translator: trabajo <turulomio@yahoo.es>\n"
 "Language-Team: Spanish <kde-i18n-doc@kde.org>\n"
@@ -48,17 +48,21 @@ msgstr "Detectando contenido de fichero en '{0}'..."
 msgid "'{0}' wasn't found in '{1}'"
 msgstr "'{0}' no fue encontrado en '{1}'"
 
-msgid "Script to execute a firefox instance with a recently created user. It deletes user after firefox execution"
-msgstr "Programa que ejecuta una instancia de firefox con un usuario recién creado. Lo borra después de la ejecución de firefox"
+msgid "Script to execute a firefox instance with a recently created user from wayland. It deletes user after firefox execution"
+msgstr "Programa que ejecuta una instancia de firefox con un usuario recién creado en wayland. Lo borra después de la ejecución de firefox"
 
 msgid "Directory to sync files to after closing firefox"
 msgstr "Directorio al que sincronizar ficheros después de cerrar firefox"
 
-msgid "You need to set it up exactly in order to have sound enabled"
-msgstr "Necesitas configurarlo de forma exacta para tener el sonido habilitado"
+#, python-brace-format
+msgid "Adding user 'firefox_newuser' with password '{0}' ..."
+msgstr "Añadiendo usuario 'firefox_newuser' con la contraseña '{0}' ...'"
 
-msgid "Adding user 'firefox_newuser'..."
-msgstr "Añadiendo el usuario 'firefox_newuser'..."
+msgid "Changing permissions to /home/firefox_newuser..."
+msgstr "Cambiando permisos a /home/firefox_newuser..."
+
+msgid "Launching firefox..."
+msgstr "Lanzando firefox..."
 
 msgid "Deleting user 'firefox_newuser'..."
 msgstr "Borrando el usuario 'firefox_newuser'..."
@@ -73,10 +77,3 @@ msgstr "Comprobando que {0} ficheros han sido movidos a '{1}'..."
 
 msgid "Introduce root password to launch firefox_newuser"
 msgstr "Introduzca la contraseña de root para ejecutar firefox_newuser"
-
-msgid "Script to execute a firefox instance with a recently created user from wayland. It deletes user after firefox execution"
-msgstr "Programa que ejecuta una instancia de firefox con un usuario recién creado en wayland. Lo borra después de la ejecución de firefox"
-
-#, python-brace-format
-msgid "Adding user 'firefox_newuser' with password '{0}' ..."
-msgstr "Añadiendo usuario 'firefox_newuser' con la contraseña '{0}' ...'"
