@@ -1,13 +1,14 @@
-from argparse import ArgumentParser, RawTextHelpFormatter
+from argparse import ArgumentParser, RawTextHelpFormatter, SUPPRESS
 from colorama import init, Style
 from firefox_newuser import __versiondate__, __version__, add_user_securely
 from firefox_newuser.commons import detect_condition, detect_command, string_ok, string_fail, argparse_epilog, _
 from getpass import getuser
 from glob import glob
-from os import path, makedirs, system, environ
+from os import path, makedirs, system, environ, getuid
 from psutil import process_iter
 from secrets import token_urlsafe
 from subprocess import run, PIPE, STDOUT
+import pwd
 from shutil import move
 from sys import stdout
 from tqdm import tqdm
@@ -19,6 +20,7 @@ def main():
     parser=ArgumentParser(description=_('Script to execute a firefox instance with a recently created user from wayland. It deletes user after firefox execution'), epilog=argparse_epilog(), formatter_class=RawTextHelpFormatter)
     parser.add_argument('--version', action='version', version=__version__)
     parser.add_argument('--sync', help=_("Directory to sync files to after closing firefox"), default="/root")
+    parser.add_argument('--host-uid', type=int, help=SUPPRESS)
     args=parser.parse_args()
     
     if getuser()=="root":
@@ -26,12 +28,49 @@ def main():
         add_user_securely("firefox_newuser", fn_password)
         print(_("Adding user 'firefox_newuser' with password '{0}' ...").format(fn_password))
 
-
         run("chown -Rvc firefox_newuser:users /home/firefox_newuser", shell=True, capture_output=True)
         print(_("Changing permissions to /home/firefox_newuser..."))
 
+        # Sound support: share the host user's PulseAudio/PipeWire socket
+        pulse_env = ""
+        if args.host_uid:
+            host_runtime_dir = f"/run/user/{args.host_uid}"
+            try:
+                host_home = pwd.getpwuid(args.host_uid).pw_dir
+            except KeyError:
+                host_home = None
+
+            pulse_socket = f"{host_runtime_dir}/pulse/native"
+            pw_socket = f"{host_runtime_dir}/pipewire-0"
+            
+            # Grant the new user access to the host's runtime directory
+            run(f"setfacl -m u:firefox_newuser:x {host_runtime_dir}", shell=True, capture_output=True)
+            
+            if path.exists(pulse_socket):
+                run(f"setfacl -m u:firefox_newuser:x {path.dirname(pulse_socket)}", shell=True, capture_output=True)
+                run(f"setfacl -m u:firefox_newuser:rw {pulse_socket}", shell=True, capture_output=True)
+                pulse_env += f"PULSE_SERVER=unix:{pulse_socket} "
+            
+            if path.exists(pw_socket):
+                run(f"setfacl -m u:firefox_newuser:rw {pw_socket}", shell=True, capture_output=True)
+                # For native PipeWire support, point to the host's runtime directory
+                pulse_env += f"PIPEWIRE_RUNTIME_DIR={host_runtime_dir} PIPEWIRE_REMOTE=pipewire-0 "
+            
+            # PulseAudio/PipeWire Cookie authentication
+            possible_cookies = [
+                path.join(host_home, ".config/pulse/cookie") if host_home else None,
+                f"{host_runtime_dir}/pulse/cookie"
+            ]
+            for cookie_path in filter(None, possible_cookies):
+                if path.exists(cookie_path):
+                    run(f"setfacl -m u:firefox_newuser:r {cookie_path}", shell=True, capture_output=True)
+                    pulse_env += f"PULSE_COOKIE={cookie_path} "
+                    break
+
+        firefox_cmd = f"env {pulse_env}firefox --private-window www.google.com"
+
         #Launching firefox
-        b=run("kdesu -u firefox_newuser -c 'firefox --private-window www.google.com'", shell=True, capture_output=True)
+        b=run(f"kdesu -u firefox_newuser -c '{firefox_cmd}'", shell=True, capture_output=True)
         print(b)
         print(_("Launching firefox..."))
 
@@ -81,4 +120,4 @@ def main():
   
     else:
         print(_("Introduce root password to launch firefox_newuser"))
-        system(f"""su - -c "{environ["_"]} --sync '{args.sync}'" """) #Launches same program again as root
+        system(f"""su - -c "{environ["_"]} --sync '{args.sync}' --host-uid {getuid()}" """) #Launches same program again as root
