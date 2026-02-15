@@ -10,9 +10,8 @@ def translate():
 
 def release():
     print("""Nueva versión:
-  * Cambiar la versión y la fecha en __init__.py
+  * Cambiar la versión y la fecha en commons.py
   * Cambiar la versión en pyproject.toml
-  * Modificar el Changelog en README
   * poe translate
   * Update *.po files
   * poe translate
@@ -23,5 +22,4 @@ def release():
   * poetry publish --username --password  
   * Crea un nuevo ebuild de firefox_newuser Gentoo con la nueva versión
   * Subelo al repositorio del portage
-
 """.format(__version__))

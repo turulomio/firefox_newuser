@@ -6,8 +6,8 @@ from importlib.resources import files
 from subprocess import run, PIPE, STDOUT
 from sys import stdout
 
-__version__= '0.10.0dev'
-__versiondatetime__=datetime(2026, 2, 15, 9, 55)
+__version__= '1.0.0'
+__versiondatetime__=datetime(2026, 2, 15, 11, 5)
 __versiondate__=__versiondatetime__.date()
 
 def add_user_securely(username, password):
