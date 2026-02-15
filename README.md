@@ -1,29 +1,63 @@
-# Changelog
-## 0.9.0 (2023-08-12)
-- Migrated to pyproject.toml
-- Added wayland support with a new command firefox_newuser_wayland
+# Firefox NewUser
 
-## 0.8.0 (2022-11-13)
-- Sync directory in now created if it doesn't exist.
+Script para ejecutar una instancia de Firefox con un usuario temporal creado dinámicamente. El usuario y todos sus datos se eliminan automáticamente al cerrar el navegador, garantizando una sesión limpia y aislada.
 
-## 0.7.0 (2022-11-02)
-- Personal --sync directory now works
+## Características
 
-## 0.6.0 (2022-11-02)
-- Sync files feature improved. You can download files in any place  on firefox_newuser home
+- **Aislamiento total:** Crea un usuario de sistema (`firefox_newuser`) exclusivo para la sesión.
+- **Limpieza automática:** Elimina el usuario, su grupo y su directorio `/home` tras la ejecución.
+- **Sincronización de archivos:** Permite mover archivos descargados o creados durante la sesión a un directorio persistente antes de la eliminación.
+- **Soporte Multi-entorno:** Incluye comandos específicos para X11 y Wayland.
+- **Sonido:** Configuración para habilitar audio mediante PulseAudio.
 
-## 0.5.0 (2022-09-20)
-- Changed to a python app
+## Requisitos
 
-## 0.4.0 (2022-09-14)
-- Added sync directory.
-- .cache/doc is unmounted now cache/doc
+- Python >= 3.10
+- Privilegios de **root** (el script los solicitará mediante `su` si se ejecuta como usuario normal).
+- Firefox instalado.
+- Herramientas de sistema: `useradd`, `userdel`, `xhost` (para X11), `pkill`.
 
-## 0.3.0 (2021-12-29)
-- Added DISPLAY environment variable
+## Instalación
 
-## 0.2.0 (2020-01-09)
-- Process information on exit is improved
+Si utilizas Poetry:
 
-## 0.1.0 (2020-01-09)
-- Imported from old scripts
+```bash
+poetry install
+```
+
+## Uso
+
+El proyecto expone dos puntos de entrada principales:
+
+### 1. X11 (Entorno estándar)
+```bash
+firefox_newuser --sync /ruta/de/destino
+```
+*Por defecto, los archivos se sincronizan en `/root` si no se especifica `--sync`.*
+
+### 2. Wayland
+```bash
+firefox_newuser_wayland --sync /ruta/de/destino
+```
+
+## Configuración de Sonido (X11)
+
+Para que el audio funcione correctamente en la sesión aislada bajo X11, es necesario configurar PulseAudio para que acepte conexiones anónimas a través de un socket compartido. 
+
+Añade o modifica la siguiente línea en tu archivo `/etc/pulse/default.pa`:
+
+```text
+load-module module-native-protocol-unix auth-anonymous=1 socket=/tmp/my-pulse-socket-name
+```
+
+## Desarrollo
+
+El proyecto utiliza `poethepoet` para tareas comunes:
+
+- **Traducir mensajes:** `poe translate`
+- **Preparar release:** `poe release`
+
+## Licencia
+
+Este proyecto está bajo la licencia **GPL-3.0-only**. Consulta el archivo `LICENSE.txt` para más detalles.
+
