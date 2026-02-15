@@ -31,39 +31,56 @@ def main():
         run("chown -Rvc firefox_newuser:users /home/firefox_newuser", shell=True, capture_output=True)
         print(_("Changing permissions to /home/firefox_newuser..."))
 
-        # Sound support: share the host user's PulseAudio/PipeWire socket
+        # --- SOUND SUPPORT LOGIC ---
+        # To get sound working for a different user, we must bridge the gap between 
+        # the host user's sound server (PipeWire/PulseAudio) and the temporary user.
         pulse_env = ""
         if args.host_uid:
+            # 1. Locate the host's runtime directory (where communication sockets live)
             host_runtime_dir = f"/run/user/{args.host_uid}"
             try:
                 host_home = pwd.getpwuid(args.host_uid).pw_dir
             except KeyError:
                 host_home = None
 
+            # 2. Define paths for the communication sockets
             pulse_socket = f"{host_runtime_dir}/pulse/native"
             pw_socket = f"{host_runtime_dir}/pipewire-0"
             
-            # Grant the new user access to the host's runtime directory
+            # 3. Permissions (ACLs):
+            # We use 'setfacl' to grant the temporary user 'x' (search/execute) permission 
+            # on the host's runtime directory. Without this, the new user cannot "enter" 
+            # the directory to see the sockets, even if they have permission for the sockets themselves.
             run(f"setfacl -m u:firefox_newuser:x {host_runtime_dir}", shell=True, capture_output=True)
             
             if path.exists(pulse_socket):
+                # Grant access to the pulse subdirectory and the socket itself
                 run(f"setfacl -m u:firefox_newuser:x {path.dirname(pulse_socket)}", shell=True, capture_output=True)
                 run(f"setfacl -m u:firefox_newuser:rw {pulse_socket}", shell=True, capture_output=True)
+                # Tell Firefox to use this specific Unix socket for PulseAudio
                 pulse_env += f"PULSE_SERVER=unix:{pulse_socket} "
             
             if path.exists(pw_socket):
+                # Grant read/write access to the native PipeWire socket
                 run(f"setfacl -m u:firefox_newuser:rw {pw_socket}", shell=True, capture_output=True)
-                # For native PipeWire support, point to the host's runtime directory
+                # Tell PipeWire clients where to find the host's server
                 pulse_env += f"PIPEWIRE_RUNTIME_DIR={host_runtime_dir} PIPEWIRE_REMOTE=pipewire-0 "
             
-            # PulseAudio/PipeWire Cookie authentication
+            # 4. The Cookie (Authentication):
+            # PulseAudio/PipeWire uses a 'cookie' file as a shared secret. 
+            # Even if the user can reach the socket, the server will reject the 
+            # connection unless the client presents this cookie. 
+            # This is a security feature to prevent other users on the same machine 
+            # from eavesdropping on your microphone or playing loud noises.
             possible_cookies = [
                 path.join(host_home, ".config/pulse/cookie") if host_home else None,
                 f"{host_runtime_dir}/pulse/cookie"
             ]
             for cookie_path in filter(None, possible_cookies):
                 if path.exists(cookie_path):
+                    # Grant the temporary user read access to the host's cookie file
                     run(f"setfacl -m u:firefox_newuser:r {cookie_path}", shell=True, capture_output=True)
+                    # Tell Firefox where the authentication cookie is located
                     pulse_env += f"PULSE_COOKIE={cookie_path} "
                     break
 
