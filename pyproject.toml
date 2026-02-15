@@ -1,36 +1,36 @@
-[tool.poetry]
+[project]
 name = "firefox-newuser"
-version = "0.9.0"
+version = "0.10.0dev"
 description = "Script to execute a firefox instance with a recently created user. It deletes user after firefox execution"
-authors = ["turulomio <turulomio@yahoo.es>"]
-license = "GPL-3.0 license"
+authors = [{name = "turulomio", email = "turulomio@yahoo.es"}]
+license = "GPL-3.0-only"
 readme = "README.md"
-packages = [{include = "firefox_newuser"}]
+requires-python = ">=3.10,<4.0"
+dependencies = [
+    "tqdm>=4.67.3",
+    "psutil>=7.2.2",
+    "colorama>=0.4.6",
+]
 
-[tool.poetry.dependencies]
-python = ">=3.9,<4.0"
-tqdm = ">=4.66.4"
-psutil = ">=5.9.8"
-colorama = ">=0.4.6"
-
-[tool.poetry.group.dev.dependencies]
-poetry = ">=1.8.3"
-poethepoet = ">=0.26.1"
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
-
-[tool.poetry.scripts]
+[project.scripts]
 firefox_newuser = "firefox_newuser.core:main"
-firefox_newuser_wayland = "firefox_newuser.core:wayland"
-
-
-[tool.poe.tasks]
-release = { script = "firefox_newuser.poethepoet:release" }
-translate = { script = "firefox_newuser.poethepoet:translate" }
 
 [project.urls]
 homepage = "https://github.com/turulomio/firefox_newuser/"
 repository = "https://github.com/turulomio/firefox_newuser/"
 changelog = "https://github.com/turulomio/firefox_newuser#changelog"
+
+[tool.poetry]
+packages = [{include = "firefox_newuser"}]
+
+[tool.poetry.group.dev.dependencies]
+poetry = ">=2.3.2"
+poethepoet = ">=0.41.0"
+
+[build-system]
+requires = ["poetry-core>=2.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poe.tasks]
+release = { script = "firefox_newuser.poethepoet:release" }
+translate = { script = "firefox_newuser.poethepoet:translate" }
