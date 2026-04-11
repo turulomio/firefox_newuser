@@ -24,7 +24,7 @@ changelog = "https://github.com/turulomio/firefox_newuser#changelog"
 packages = [{include = "firefox_newuser"}]
 
 [tool.poetry.group.dev.dependencies]
-poetry = ">=2.3.2"
+poetry = ">=2.3.3"
 poethepoet = ">=0.41.0"
 
 [build-system]
