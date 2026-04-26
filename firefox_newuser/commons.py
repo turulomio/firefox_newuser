@@ -4,7 +4,10 @@ from colorama import init, Fore, Style
 from gettext import translation
 from importlib.resources import files
 from subprocess import run, PIPE, STDOUT, CompletedProcess
-from sys import stdout
+from sys import stdout, exit as sys_exit # Renamed exit to avoid conflict with path.exists
+from getpass import getuser # Added for ensure_root_privileges
+from os import system, environ, getuid # Added for ensure_root_privileges
+
 from os import path # Added for path.exists in detect_file and detect_file_contents
 import pwd # Added for launch_command_as_user_with_sound
 from typing import Optional # Added for type hinting in launch_command_as_user_with_sound
@@ -100,6 +103,10 @@ def launch_command_as_user_with_sound(
     Launches a command as a specified user, with environment variables set up
     for PipeWire/PulseAudio sound support, typically using kdesu.
 
+     This function is expected to be run with root privileges, as it uses
+     'setfacl' and 'kdesu', which require elevated permissions to manage
+     user permissions and switch users effectively.
+    
     Args:
         username (str): The user to run the command as.
         command (str): The command string to execute.

@@ -1,2 +1,2 @@
-from firefox_newuser.commons import __version__, __versiondatetime__, __versiondate__, add_user_securely, launch_command_as_user_with_sound
+from firefox_newuser.commons import __version__, __versiondatetime__, __versiondate__, launch_command_as_user_with_sound
 from firefox_newuser.core import main
