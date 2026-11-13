@@ -26,7 +26,7 @@ def main():
     if getuser()=="root":
         fn_password = token_urlsafe(32)
         add_user_securely("firefox_newuser", fn_password)
-        print(_("Adding user 'firefox_newuser' with password '{0}' ...").format(fn_password))
+        print(_("Adding user 'firefox_newuser' ..."))
 
         run("chown -Rvc firefox_newuser:users /home/firefox_newuser", shell=True, capture_output=True)
         print(_("Changing permissions to /home/firefox_newuser..."))
